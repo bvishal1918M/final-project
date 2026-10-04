@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LegalEase — AI Legal Document Generator</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand"><span class="mark">§</span> LegalEase</div>
+    <span id="aiBadge" class="badge">checking…</span>
+  </header>
+
+  <main class="layout">
+    <section class="panel" id="inputPanel">
+      <h2>1 · Choose a document</h2>
+      <div id="typeCards" class="cards"></div>
+
+      <h2>2 · Enter the details</h2>
+      <form id="docForm" novalidate></form>
+      <label class="check"><input type="checkbox" id="useAi" checked> Polish clauses with AI (when available)</label>
+      <button id="generateBtn" class="primary" type="button" disabled>Generate document</button>
+      <p id="formMsg" class="msg" role="alert"></p>
+
+      <h2>3 · Branding</h2>
+      <div class="brand-grid">
+        <label>Company name<input id="bCompany" type="text" maxlength="200"></label>
+        <label>Logo (PNG / JPEG, ≤ 2 MB)<input id="bLogo" type="file" accept="image/png,image/jpeg"></label>
+        <label>Font
+          <select id="bFont">
+            <option value="serif">Serif (Times)</option>
+            <option value="sans">Sans-serif (Arial)</option>
+            <option value="mono">Monospace (Courier)</option>
+          </select>
+        </label>
+        <label>Accent colour<input id="bColor" type="color" value="#1F3A5F"></label>
+        <label class="wide">Footer text<input id="bFooter" type="text" maxlength="300" placeholder="e.g. Confidential — Nimbus Labs"></label>
+      </div>
+      <img id="logoPreview" alt="" hidden>
+    </section>
+
+    <section class="panel" id="previewPanel">
+      <div class="preview-head">
+        <h2>Preview &amp; edit</h2>
+        <div class="export">
+          <button type="button" class="export-btn" data-fmt="pdf" disabled>PDF</button>
+          <button type="button" class="export-btn" data-fmt="docx" disabled>DOCX</button>
+          <button type="button" class="export-btn" data-fmt="txt" disabled>TXT</button>
+        </div>
+      </div>
+      <p id="previewMsg" class="msg" role="status"></p>
+      <div id="empty" class="empty">Your document will appear here. Everything is editable before you download.</div>
+      <article id="paper" class="paper" hidden></article>
+      <p class="legal-note">Generated documents are templates, not legal advice. Have a qualified lawyer review before signing. Your data is processed in memory and never stored.</p>
+    </section>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>
